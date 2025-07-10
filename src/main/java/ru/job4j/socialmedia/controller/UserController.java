@@ -1,7 +1,6 @@
 package ru.job4j.socialmedia.controller;
 
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -39,21 +38,13 @@ public class UserController {
 
     @PatchMapping
     public ResponseEntity<Void> update(@RequestBody UserUpdateDto userUpdateDto) {
-        try {
-            userService.update(userUpdateDto);
-            return ResponseEntity.ok().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
+        userService.update(userUpdateDto);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> removeById(@PathVariable Integer userId) {
-        try {
-            userService.deleteById(userId);
-            return ResponseEntity.ok().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
+        userService.deleteById(userId);
+        return ResponseEntity.ok().build();
     }
 }
